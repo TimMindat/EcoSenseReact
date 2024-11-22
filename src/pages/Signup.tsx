@@ -1,11 +1,22 @@
 import React from 'react';
 import { AuthForm } from '../components/AuthForm';
 import { Leaf } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export function Signup() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle signup logic here
+    // Here you would typically:
+    // 1. Get form data
+    // 2. Validate
+    // 3. Make API call
+    // 4. Handle response
+    
+    // For demo purposes, we'll just simulate a successful signup
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    navigate('/'); // Redirect to home page after successful signup
   };
 
   return (
