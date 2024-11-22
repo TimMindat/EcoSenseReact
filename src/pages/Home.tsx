@@ -2,12 +2,6 @@ import React from 'react';
 import { Link } from '../components/Link';
 import { 
   Activity, 
-  BarChart3, 
-  Users, 
-  ArrowRight, 
-  MapPin, 
-  Wind, 
-  Droplets,
   User,
   Building2,
   LandPlot,
@@ -15,11 +9,12 @@ import {
   Brain,
   Smartphone,
   Leaf,
-  LineChart
+  LineChart,
+  ArrowRight
 } from 'lucide-react';
 import { Button } from '../components/Button';
-
-// ... AirQualityCard and WaterQualityCard components remain the same ...
+import { AirQualityCard } from '../components/AirQualityCard';
+import { WaterQualityCard } from '../components/WaterQualityCard';
 
 function UserTypeCard({ icon: Icon, title, description, features }: {
   icon: React.ElementType;
@@ -63,12 +58,6 @@ function FeatureCard({ icon: Icon, title, description }: {
 }
 
 export function Home() {
-  const [isVisible, setIsVisible] = React.useState(false);
-
-  React.useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
   const userTypes = [
     {
       icon: User,
@@ -137,12 +126,52 @@ export function Home() {
 
   return (
     <div className="bg-white">
-      {/* Hero Section - remains the same */}
-      <div className="relative isolate">
-        {/* ... existing hero section code ... */}
+      {/* Hero Section */}
+      <div className="relative isolate overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
+          <div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
+            <div className="mt-24 sm:mt-32 lg:mt-16">
+              <a href="#features" className="inline-flex space-x-6">
+                <span className="rounded-full bg-green-600/10 px-3 py-1 text-sm font-semibold leading-6 text-green-600 ring-1 ring-inset ring-green-600/10">
+                  What's new
+                </span>
+                <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-600">
+                  <span>Just shipped v1.0</span>
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </a>
+            </div>
+            <h1 className="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+              Empowering You to Protect Your Environment
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-gray-600">
+              Monitor air and water quality in real-time with IoT sensors and get personalized insights for a healthier environment.
+            </p>
+            <div className="mt-10 flex items-center gap-x-6">
+              <Link
+                href="/signup"
+                className="rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+              >
+                Get started
+              </Link>
+              <Link href="#features" className="text-sm font-semibold leading-6 text-gray-900">
+                Learn more <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </div>
+          <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
+            <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
+              <img
+                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                alt="App screenshot"
+                className="w-[76rem] rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10"
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Demo Cards - remains the same */}
+      {/* Demo Cards */}
       <div className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid md:grid-cols-2 gap-8">
           <AirQualityCard />
@@ -187,9 +216,31 @@ export function Home() {
         </div>
       </div>
 
-      {/* CTA Section - remains the same */}
+      {/* CTA Section */}
       <div className="bg-green-600">
-        {/* ... existing CTA section code ... */}
+        <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Ready to start monitoring?
+              <br />
+              Join EcoSense today.
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-green-100">
+              Get started with our platform and take control of your environmental impact.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              <Link
+                href="/signup"
+                className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-green-600 shadow-sm hover:bg-green-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                Get started
+              </Link>
+              <Link href="#features" className="text-sm font-semibold leading-6 text-white">
+                Learn more <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
