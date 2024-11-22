@@ -4,12 +4,27 @@ import useSWR from 'swr';
 import { getAirQualityData } from '../lib/api';
 
 function getAQILabel(aqi: number) {
-  if (aqi <= 50) return { text: 'Good', color: 'text-green-600', width: '20%' };
-  if (aqi <= 100) return { text: 'Moderate', color: 'text-yellow-600', width: '40%' };
-  if (aqi <= 150) return { text: 'Unhealthy for Sensitive Groups', color: 'text-orange-600', width: '60%' };
-  if (aqi <= 200) return { text: 'Unhealthy', color: 'text-red-600', width: '80%' };
-  return { text: 'Very Unhealthy', color: 'text-purple-600', width: '100%' };
+  if (aqi <= 50) return { text: 'Good', color: 'text-green-600', bgColor: 'bg-green-600', width: '20%' };
+  if (aqi <= 100) return { text: 'Moderate', color: 'text-yellow-600', bgColor: 'bg-yellow-600', width: '40%' };
+  if (aqi <= 150) return { text: 'Unhealthy for Sensitive Groups', color: 'text-orange-600', bgColor: 'bg-orange-600', width: '60%' };
+  if (aqi <= 200) return { text: 'Unhealthy', color: 'text-red-600', bgColor: 'bg-red-600', width: '80%' };
+  return { text: 'Very Unhealthy', color: 'text-purple-600', bgColor: 'bg-purple-600', width: '100%' };
 }
+
+function normalizeValue(value: number, max: number) {
+  return Math.min(Math.max((value / max) * 100, 0), 100) + '%';
+}
+
+const COMPONENT_LIMITS = {
+  co: 1000,    // Carbon monoxide (CO) in μg/m³
+  no: 100,     // Nitrogen monoxide (NO) in μg/m³
+  no2: 200,    // Nitrogen dioxide (NO2) in μg/m³
+  o3: 180,     // Ozone (O3) in μg/m³
+  so2: 350,    // Sulfur dioxide (SO2) in μg/m³
+  pm2_5: 75,   // PM2.5 in μg/m³
+  pm10: 150,   // PM10 in μg/m³
+  nh3: 100     // Ammonia (NH3) in μg/m³
+};
 
 export function AirQualityCard() {
   const { data, error, isLoading } = useSWR('airQuality', getAirQualityData, {
@@ -43,7 +58,7 @@ export function AirQualityCard() {
 
   const airQuality = data?.list?.[0]?.main?.aqi || 0;
   const components = data?.list?.[0]?.components || {};
-  const { text, color, width } = getAQILabel(airQuality);
+  const { text, color, bgColor, width } = getAQILabel(airQuality);
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-6">
@@ -68,23 +83,29 @@ export function AirQualityCard() {
             <span className={`text-sm font-medium ${color}`}>{text}</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
-            <div className={`bg-green-600 h-2 rounded-full transition-all duration-500`} style={{ width }}></div>
+            <div className={`${bgColor} h-2 rounded-full transition-all duration-500`} style={{ width }}></div>
           </div>
         </div>
-        {Object.entries(components).map(([key, value]) => (
-          <div key={key}>
-            <div className="flex justify-between mb-1">
-              <span className="text-sm font-medium text-gray-700">{key.toUpperCase()}</span>
-              <span className="text-sm font-medium text-gray-600">{value} μg/m³</span>
+        {Object.entries(components).map(([key, value]) => {
+          const limit = COMPONENT_LIMITS[key as keyof typeof COMPONENT_LIMITS];
+          const normalizedWidth = normalizeValue(Number(value), limit);
+          const quality = Number(value) <= limit * 0.5 ? 'bg-green-600' : Number(value) <= limit * 0.75 ? 'bg-yellow-600' : 'bg-red-600';
+          
+          return (
+            <div key={key}>
+              <div className="flex justify-between mb-1">
+                <span className="text-sm font-medium text-gray-700">{key.toUpperCase()}</span>
+                <span className="text-sm font-medium text-gray-600">{value} μg/m³</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div 
+                  className={`${quality} h-2 rounded-full transition-all duration-500`}
+                  style={{ width: normalizedWidth }}
+                ></div>
+              </div>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div 
-                className="bg-green-600 h-2 rounded-full transition-all duration-500"
-                style={{ width: `${(Number(value) / 100) * 100}%` }}
-              ></div>
-            </div>
-          </div>
-        ))}
+          );
+        })}
         <p className="text-xs text-gray-500 mt-2">
           Last updated: {new Date().toLocaleString()}
         </p>

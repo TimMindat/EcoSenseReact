@@ -48,7 +48,7 @@ export function AuthForm({ type, onSubmit }: AuthFormProps) {
             id="name"
             required
             className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500 transition-colors duration-200"
-            placeholder="John Doe"
+            placeholder="Zodo Tim"
           />
         </div>
       )}
@@ -62,7 +62,7 @@ export function AuthForm({ type, onSubmit }: AuthFormProps) {
           id="email"
           required
           className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500 transition-colors duration-200"
-          placeholder="you@example.com"
+          placeholder="timmind@tim.com"
         />
       </div>
 
