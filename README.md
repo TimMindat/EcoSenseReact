@@ -1,7 +1,7 @@
 **EcoSenseSite** is the official website for the EcoSense platform, designed to provide real-time air and water quality insights to users, businesses, and governments. Built using **Vite + React + TS**, the site offers features like login and sign-up functionality, interactive dashboards, and comprehensive environmental monitoring visualizations. This repository hosts the front-end code for the project.
 
 
-```markdown
+
 # EcoSenseSite 🌍
 
 EcoSenseSite is the front-end repository for the EcoSense platform, a cutting-edge solution for monitoring and analyzing air and water quality. This website provides personalized insights and actionable recommendations for Regular Users, Businesses, and Governments to promote sustainability and healthy environments.
