@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, X, Leaf } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 export function Navbar() {
@@ -16,17 +16,21 @@ export function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <Leaf className="h-8 w-8 text-green-600" />
+              <img 
+                src="https://i.imgur.com/MnOXq3t_d.webp?maxwidth=760&fidelity=grand" 
+                alt="EcoSense Logo" 
+                className="h-10 w-10 object-contain"
+              />
               <span className="text-xl font-bold text-gray-900">EcoSense</span>
             </Link>
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/features" className={`hover:text-green-700 transition-colors ${isActive('/features')}`}>
-              Features
-            </Link>
             <Link to="/about" className={`hover:text-green-700 transition-colors ${isActive('/about')}`}>
               About
+            </Link>
+            <Link to="/team" className={`hover:text-green-700 transition-colors ${isActive('/team')}`}>
+              Our Team
             </Link>
             <Link to="/contact" className={`hover:text-green-700 transition-colors ${isActive('/contact')}`}>
               Contact
@@ -61,18 +65,18 @@ export function Navbar() {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
             <Link 
-              to="/features" 
-              className="block px-3 py-2 hover:text-green-700 transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              Features
-            </Link>
-            <Link 
               to="/about" 
               className="block px-3 py-2 hover:text-green-700 transition-colors"
               onClick={() => setIsOpen(false)}
             >
               About
+            </Link>
+            <Link 
+              to="/team" 
+              className="block px-3 py-2 hover:text-green-700 transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Our Team
             </Link>
             <Link 
               to="/contact" 
