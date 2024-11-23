@@ -12,7 +12,7 @@ const teamMembers = [
   },
   { name: 'Abdelrahman Mokhtar',
     role: 'UI/UX Designer & Flutter Developer',
-    image: 'https://i.imgur.com/5w46aAD_d.webp?maxwidth=760&fidelity=grand' },
+    image: 'https://i.imgur.com/T0Lh28C.jpeg' },
   { name: 'Kholoud Ahmed', role: 'Kotlin Developer' },
   { name: 'Mariam Khamees', 
     role: 'Backend Specialist',
