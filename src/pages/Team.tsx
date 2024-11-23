@@ -12,7 +12,7 @@ const teamMembers = [
   },
   { name: 'Abdelrahman Mokhtar',
     role: 'UI/UX Designer & Flutter Developer',
-    image: 'https://scontent.fcai19-4.fna.fbcdn.net/v/t39.30808-6/259504870_1615494885461229_3940457085574229053_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=vOxpPXoc8-MQ7kNvgHOoq8q&_nc_zt=23&_nc_ht=scontent.fcai19-4.fna&_nc_gid=AvASO6d_i8bya8q3aOwo-6Z&oh=00_AYC__vV8-yOkqLmhbjy1eF-kozjHDjwBEPAG0DyB4rZaWw&oe=67477C0B' },
+    image: 'https://scontent.fcai19-4.fna.fbcdn.net/v/t39.30808-6/295646502_1791841111159938_9145307259663862240_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=J4mksA_IsP0Q7kNvgFS5uBU&_nc_zt=23&_nc_ht=scontent.fcai19-4.fna&_nc_gid=AbrSyWxqOuRYgZIZMudN9Oo&oh=00_AYCh3KPFx8PVVg0NNv4KqfDv4akRFRO6K_i1ch67bmXiCw&oe=6747A4A9' },
   { name: 'Kholoud Ahmed', role: 'Kotlin Developer' },
   { name: 'Mariam Khamees', 
     role: 'Backend Specialist',
@@ -21,7 +21,7 @@ const teamMembers = [
   { name: 'Abdallah Salah', role: 'Hardware Specialist' },
   { name: 'Hamdy Sayed',
     role: 'Frontend Developer',
-    image: 'https://photos.fife.usercontent.google.com/pw/AP1GczO5Atcjp0Km9JRci0QoxGSF3jmJn4zm92Tq4K6SsJEjCECQeT_WnAdnRg=w716-h951-s-no-gm?authuser=0'
+    image: 'https://i.imgur.com/v3ZmxoW.jpeg'
   }
 ];
 
