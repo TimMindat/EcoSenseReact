@@ -33,20 +33,42 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [setUser]);
 
   const signup = async (email: string, password: string, name: string) => {
-    const { user } = await createUserWithEmailAndPassword(auth, email, password);
-    await updateProfile(user, { displayName: name });
+    try {
+      const { user } = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(user, { displayName: name });
+      return user;
+    } catch (error: any) {
+      console.error('Signup error:', error);
+      throw new Error(error.message || 'Failed to create account');
+    }
   };
 
   const login = async (email: string, password: string) => {
-    await signInWithEmailAndPassword(auth, email, password);
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      return result.user;
+    } catch (error: any) {
+      console.error('Login error:', error);
+      throw new Error(error.message || 'Failed to sign in');
+    }
   };
 
   const logout = async () => {
-    await signOut(auth);
+    try {
+      await signOut(auth);
+    } catch (error: any) {
+      console.error('Logout error:', error);
+      throw new Error(error.message || 'Failed to sign out');
+    }
   };
 
   const resetPassword = async (email: string) => {
-    await sendPasswordResetEmail(auth, email);
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (error: any) {
+      console.error('Reset password error:', error);
+      throw new Error(error.message || 'Failed to reset password');
+    }
   };
 
   const value = {
