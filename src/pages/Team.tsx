@@ -2,11 +2,11 @@ import React from 'react';
 import { Users, Github, Linkedin, Mail } from 'lucide-react';
 
 const teamMembers = [
-  { name: 'Abdelrahman Temraz', role: 'Full Stack Developer' },
-  { name: 'Abdelrahman Mokhtar', role: 'IoT Specialist' },
-  { name: 'Kholoud Ahmed', role: 'Machine Learning Engineer' },
-  { name: 'Mariam Khamees', role: 'UI/UX Designer' },
-  { name: 'Abdallah Salah', role: 'Backend Developer' },
+  { name: 'Abdelrahman Temraz', role: 'TL & AI Specialist' },
+  { name: 'Abdelrahman Mokhtar', role: 'UI/UX Designer & Flutter Developer' },
+  { name: 'Kholoud Ahmed', role: 'Kotlin Developer' },
+  { name: 'Mariam Khamees', role: 'Backend Specialist' },
+  { name: 'Abdallah Salah', role: 'Hardware Specialist' },
   { name: 'Hamdy Sayed', role: 'Frontend Developer' }
 ];
 
