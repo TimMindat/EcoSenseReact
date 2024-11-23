@@ -12,7 +12,7 @@ const teamMembers = [
   },
   { name: 'Abdelrahman Mokhtar',
     role: 'UI/UX Designer & Flutter Developer',
-    image: 'https://scontent.fcai19-4.fna.fbcdn.net/v/t39.30808-6/295646502_1791841111159938_9145307259663862240_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=J4mksA_IsP0Q7kNvgFS5uBU&_nc_zt=23&_nc_ht=scontent.fcai19-4.fna&_nc_gid=AbrSyWxqOuRYgZIZMudN9Oo&oh=00_AYCh3KPFx8PVVg0NNv4KqfDv4akRFRO6K_i1ch67bmXiCw&oe=6747A4A9' },
+    image: 'https://i.imgur.com/5w46aAD_d.webp?maxwidth=760&fidelity=grand' },
   { name: 'Kholoud Ahmed', role: 'Kotlin Developer' },
   { name: 'Mariam Khamees', 
     role: 'Backend Specialist',
