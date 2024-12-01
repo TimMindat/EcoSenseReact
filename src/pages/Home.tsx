@@ -15,6 +15,7 @@ import {
 import { Button } from '../components/Button';
 import { AirQualityCard } from '../components/AirQualityCard';
 import { WaterQualityCard } from '../components/WaterQualityCard';
+import { QualityGuide } from '../components/QualityGuide';
 
 function UserTypeCard({ icon: Icon, title, description, features }: {
   icon: React.ElementType;
@@ -159,7 +160,7 @@ export function Home() {
               </Link>
             </div>
           </div>
-          <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
+          <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none xl:ml-32">
             <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
               <img
                 src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
@@ -176,6 +177,9 @@ export function Home() {
         <div className="grid md:grid-cols-2 gap-8">
           <AirQualityCard />
           <WaterQualityCard />
+        </div>
+        <div className="mt-12">
+          <QualityGuide />
         </div>
       </div>
 
