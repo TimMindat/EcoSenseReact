@@ -17,9 +17,11 @@ export function Navbar() {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
               <img 
-                src="https://i.imgur.com/MnOXq3t_d.webp?maxwidth=760&fidelity=grand" 
-                alt="EcoSense Logo" 
+                src="https://i.imgur.com/4vkOF6D.png" 
+                alt="EcoSense Logo"
                 className="h-10 w-10 object-contain"
+                loading="eager"
+                srcSet="https://i.imgur.com/4vkOF6D.png 1x, https://i.imgur.com/4vkOF6D.png 2x"
               />
               <span className="text-xl font-bold text-gray-900">EcoSense</span>
             </Link>
