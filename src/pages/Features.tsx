@@ -2,11 +2,11 @@ import React from 'react';
 import { 
   Activity, 
   AlertCircle, 
-  BarChart2, 
+  BarChart, 
   Bell, 
   Brain, 
   Building2, 
-  ChartBar, 
+  BarChart2, 
   CloudRain, 
   FileText, 
   Globe, 
@@ -51,7 +51,7 @@ const userTypes: UserTypeSection[] = [
         description: "Receive personalized alerts when air or water quality reaches unsafe levels, with health recommendations."
       },
       {
-        icon: ChartBar,
+        icon: BarChart2,
         title: "Interactive Data Visualizations",
         description: "Explore data through interactive charts, graphs, and maps to understand trends in air and water quality."
       },
@@ -135,7 +135,7 @@ const userTypes: UserTypeSection[] = [
         description: "Send region-specific alerts to the public when air or water quality is hazardous."
       },
       {
-        icon: BarChart2,
+        icon: BarChart,
         title: "Historical Data and Trend Analysis",
         description: "Access historical data for long-term trend analysis to inform public policies and sustainability initiatives."
       },
