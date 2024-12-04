@@ -29,11 +29,11 @@ export function Navbar() {
             <Link to="/about" className={`hover:text-green-700 transition-colors ${isActive('/about')}`}>
               About
             </Link>
+            <Link to="/features" className={`hover:text-green-700 transition-colors ${isActive('/features')}`}>
+              Features
+            </Link>
             <Link to="/team" className={`hover:text-green-700 transition-colors ${isActive('/team')}`}>
               Our Team
-            </Link>
-            <Link to="/contact" className={`hover:text-green-700 transition-colors ${isActive('/contact')}`}>
-              Contact
             </Link>
             <Link 
               to="/login" 
@@ -72,18 +72,18 @@ export function Navbar() {
               About
             </Link>
             <Link 
+              to="/features" 
+              className="block px-3 py-2 hover:text-green-700 transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Features
+            </Link>
+            <Link 
               to="/team" 
               className="block px-3 py-2 hover:text-green-700 transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Our Team
-            </Link>
-            <Link 
-              to="/contact" 
-              className="block px-3 py-2 hover:text-green-700 transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              Contact
             </Link>
             <Link 
               to="/login" 

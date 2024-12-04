@@ -10,10 +10,14 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
+          'lucide-react': ['lucide-react'],
           firebase: ['firebase/app', 'firebase/auth'],
           react: ['react', 'react-dom', 'react-router-dom'],
         },
       },
     },
   },
+  optimizeDeps: {
+    include: ['lucide-react']
+  }
 });
