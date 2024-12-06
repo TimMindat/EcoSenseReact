@@ -1,14 +1,26 @@
 import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { User, Settings, Clock, Activity } from 'lucide-react';
+import { User, Settings, Clock, Activity, LogOut } from 'lucide-react';
 import { Link } from '../components/Link';
+import { Button } from '../components/Button';
+import { useNavigate } from 'react-router-dom';
 
 export function Profile() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   if (!user) {
     return null;
   }
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/login');
+    } catch (error) {
+      console.error('Failed to log out:', error);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -32,6 +44,14 @@ export function Profile() {
                 {user.displayName || 'Welcome!'}
               </h1>
               <p className="text-green-100">{user.email}</p>
+              <Button
+                variant="secondary"
+                onClick={handleLogout}
+                className="mt-6 inline-flex items-center"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Sign Out
+              </Button>
             </div>
           </div>
 
