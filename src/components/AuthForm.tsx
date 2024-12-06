@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from './Link';
 import { Eye, EyeOff, CheckCircle2, XCircle } from 'lucide-react';
 import { Button } from './Button';
+import { useAuth } from '../contexts/AuthContext';
 
 interface AuthFormProps {
   type: 'login' | 'signup';
@@ -9,30 +10,49 @@ interface AuthFormProps {
 }
 
 export function AuthForm({ type, onSubmit }: AuthFormProps) {
+  const { error, clearError } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [formError, setFormError] = useState<string | null>(null);
   const [passwordStrength, setPasswordStrength] = useState({
     hasLength: false,
     hasNumber: false,
     hasSpecial: false,
   });
-  
+
+  useEffect(() => {
+    if (error) {
+      setFormError(error.message);
+      setLoading(false);
+    }
+  }, [error]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (type === 'signup' && password !== confirmPassword) {
-      alert("Passwords don't match");
-      return;
+    setFormError(null);
+    clearError();
+
+    if (type === 'signup') {
+      if (password !== confirmPassword) {
+        setFormError("Passwords don't match");
+        return;
+      }
+      
+      if (!passwordStrength.hasLength || !passwordStrength.hasNumber || !passwordStrength.hasSpecial) {
+        setFormError('Please ensure your password meets all requirements');
+        return;
+      }
     }
+
     setLoading(true);
     try {
       await onSubmit(e, email, password, name);
     } catch (error) {
-      console.error('Error:', error);
-    } finally {
+      console.error('Form submission error:', error);
       setLoading(false);
     }
   };
@@ -45,9 +65,15 @@ export function AuthForm({ type, onSubmit }: AuthFormProps) {
       hasSpecial: /[!@#$%^&*(),.?":{}|<>]/.test(value),
     });
   };
-  
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-md">
+      {formError && (
+        <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg">
+          {formError}
+        </div>
+      )}
+
       {type === 'signup' && (
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">
@@ -60,7 +86,7 @@ export function AuthForm({ type, onSubmit }: AuthFormProps) {
             onChange={(e) => setName(e.target.value)}
             required
             className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500 transition-colors duration-200"
-            placeholder="Zodo Tim"
+            placeholder="John Doe"
           />
         </div>
       )}
@@ -76,7 +102,7 @@ export function AuthForm({ type, onSubmit }: AuthFormProps) {
           onChange={(e) => setEmail(e.target.value)}
           required
           className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500 transition-colors duration-200"
-          placeholder="timmind@tim.com"
+          placeholder="john@example.com"
         />
       </div>
 
