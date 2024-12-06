@@ -7,6 +7,7 @@ import { Features } from './pages/Features';
 import { Login } from './pages/Login';
 import { Signup } from './pages/Signup';
 import { Profile } from './pages/Profile';
+import { ForgotPassword } from './pages/ForgotPassword';
 import { Navbar } from './components/Navbar';
 import { MobileBottomNav } from './components/navigation/MobileBottomNav';
 import { AuthProvider } from './contexts/AuthContext';
@@ -25,6 +26,7 @@ function AppRoutes() {
       <Route path="/features" element={<Features />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route 
         path="/profile" 
         element={

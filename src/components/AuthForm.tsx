@@ -86,7 +86,7 @@ export function AuthForm({ type, onSubmit }: AuthFormProps) {
             onChange={(e) => setName(e.target.value)}
             required
             className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500 transition-colors duration-200"
-            placeholder="John Doe"
+            placeholder="Tim Mind"
           />
         </div>
       )}
@@ -102,7 +102,7 @@ export function AuthForm({ type, onSubmit }: AuthFormProps) {
           onChange={(e) => setEmail(e.target.value)}
           required
           className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500 transition-colors duration-200"
-          placeholder="john@example.com"
+          placeholder="tim@mind.com"
         />
       </div>
 

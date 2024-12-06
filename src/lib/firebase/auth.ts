@@ -59,7 +59,10 @@ export { signInWithGoogle };
 
 export async function resetPassword(email: string): Promise<void> {
   try {
-    await sendPasswordResetEmail(auth, email);
+    await sendPasswordResetEmail(auth, email, {
+      url: window.location.origin + '/login',
+      handleCodeInApp: false
+    });
   } catch (error: any) {
     console.error('Password reset error:', error);
     throw formatAuthError(error);
