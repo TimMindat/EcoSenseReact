@@ -6,6 +6,7 @@ import { Team } from './pages/Team';
 import { Features } from './pages/Features';
 import { Login } from './pages/Login';
 import { Signup } from './pages/Signup';
+import { Profile } from './pages/Profile';
 import { Navbar } from './components/Navbar';
 import { AuthProvider } from './contexts/AuthContext';
 import { useAuth } from './contexts/AuthContext';
@@ -28,6 +29,14 @@ function App() {
               <Route path="/features" element={<Features />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route 
+                path="/profile" 
+                element={
+                  <PrivateRoute>
+                    <Profile />
+                  </PrivateRoute>
+                } 
+              />
               <Route path="/" element={<Home />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>

@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User } from 'firebase/auth';
 import { auth } from '../lib/firebase/index';
 import { signUp, signIn, signInWithGoogle, logOut, resetPassword, AuthError } from '../lib/firebase/auth';
+import { setSessionCookie, clearSessionCookie } from '../lib/auth/session';
 
 interface AuthContextType {
   user: User | null;
@@ -25,6 +26,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
+      if (user) {
+        setSessionCookie(user);
+      } else {
+        clearSessionCookie();
+      }
       setLoading(false);
     });
 
@@ -68,6 +74,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       setError(null);
       await logOut();
+      clearSessionCookie();
     } catch (err) {
       const authError = err as AuthError;
       setError(authError);
