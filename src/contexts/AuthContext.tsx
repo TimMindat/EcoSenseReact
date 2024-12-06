@@ -28,7 +28,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false);
     });
 
-    return unsubscribe;
+    return () => unsubscribe();
   }, []);
 
   const signup = async (email: string, password: string, name: string) => {
@@ -36,9 +36,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null);
       await signUp(email, password, name);
     } catch (err) {
-      console.error('Signup error:', err);
-      setError(err as AuthError);
-      throw err;
+      const authError = err as AuthError;
+      setError(authError);
+      throw authError;
     }
   };
 
@@ -47,9 +47,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null);
       await signIn(email, password);
     } catch (err) {
-      console.error('Login error:', err);
-      setError(err as AuthError);
-      throw err;
+      const authError = err as AuthError;
+      setError(authError);
+      throw authError;
     }
   };
 
@@ -58,9 +58,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null);
       await signInWithGoogle();
     } catch (err) {
-      console.error('Google login error:', err);
-      setError(err as AuthError);
-      throw err;
+      const authError = err as AuthError;
+      setError(authError);
+      throw authError;
     }
   };
 
@@ -69,9 +69,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null);
       await logOut();
     } catch (err) {
-      console.error('Logout error:', err);
-      setError(err as AuthError);
-      throw err;
+      const authError = err as AuthError;
+      setError(authError);
+      throw authError;
     }
   };
 
@@ -80,9 +80,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(null);
       await resetPassword(email);
     } catch (err) {
-      console.error('Password reset error:', err);
-      setError(err as AuthError);
-      throw err;
+      const authError = err as AuthError;
+      setError(authError);
+      throw authError;
     }
   };
 
