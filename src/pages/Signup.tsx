@@ -1,5 +1,6 @@
 import React from 'react';
 import { AuthForm } from '../components/AuthForm';
+import { GoogleAuthButton } from '../components/auth/GoogleAuthButton';
 import { Leaf } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -32,6 +33,17 @@ export function Signup() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <GoogleAuthButton className="mb-6" />
+          
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white text-gray-500">Or continue with</span>
+            </div>
+          </div>
+
           <AuthForm type="signup" onSubmit={handleSubmit} />
         </div>
       </div>
