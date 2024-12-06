@@ -1,8 +1,6 @@
 import { 
   signInWithEmailAndPassword, 
   createUserWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
   signOut,
   sendPasswordResetEmail,
   updateProfile,
@@ -10,28 +8,26 @@ import {
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from './index';
+import { signInWithGoogle } from './auth/google';
 
 export interface AuthError {
   code: string;
   message: string;
 }
 
-const googleProvider = new GoogleAuthProvider();
-
 export async function signUp(email: string, password: string, name: string): Promise<UserCredential> {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     
-    // Update profile with display name
     if (userCredential.user) {
       await updateProfile(userCredential.user, { displayName: name });
       
-      // Create user document in Firestore
       await setDoc(doc(db, 'users', userCredential.user.uid), {
         name,
         email,
         createdAt: new Date().toISOString(),
-        lastLogin: new Date().toISOString()
+        lastLogin: new Date().toISOString(),
+        provider: 'email'
       });
     }
 
@@ -46,7 +42,6 @@ export async function signIn(email: string, password: string): Promise<UserCrede
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     
-    // Update last login time
     if (userCredential.user) {
       await setDoc(doc(db, 'users', userCredential.user.uid), {
         lastLogin: new Date().toISOString()
@@ -60,25 +55,7 @@ export async function signIn(email: string, password: string): Promise<UserCrede
   }
 }
 
-export async function signInWithGoogle(): Promise<UserCredential> {
-  try {
-    const result = await signInWithPopup(auth, googleProvider);
-    
-    if (result.user) {
-      // Update or create user document
-      await setDoc(doc(db, 'users', result.user.uid), {
-        name: result.user.displayName,
-        email: result.user.email,
-        lastLogin: new Date().toISOString()
-      }, { merge: true });
-    }
-
-    return result;
-  } catch (error: any) {
-    console.error('Google sign in error:', error);
-    throw formatAuthError(error);
-  }
-}
+export { signInWithGoogle };
 
 export async function resetPassword(email: string): Promise<void> {
   try {
@@ -110,9 +87,9 @@ function formatAuthError(error: any): AuthError {
     'auth/too-many-requests': 'Too many attempts. Please try again later.',
     'auth/network-request-failed': 'Network error. Please check your connection.',
     'auth/invalid-credential': 'Invalid login credentials.',
-    'auth/invalid-verification-code': 'Invalid verification code.',
-    'auth/invalid-verification-id': 'Invalid verification ID.',
-    'auth/requires-recent-login': 'Please log in again to continue.',
+    'auth/popup-closed-by-user': 'Google sign-in was cancelled.',
+    'auth/cancelled-popup-request': 'Another sign-in popup is already open.',
+    'auth/popup-blocked': 'Sign-in popup was blocked by the browser.',
   };
   
   return {
