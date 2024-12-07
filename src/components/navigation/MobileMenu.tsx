@@ -22,6 +22,9 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </button>
         
         <div className="mt-8 space-y-4">
+          <NavLink to="/air-quality" className="block px-3 py-2">
+            Air Quality
+          </NavLink>
           <NavLink to="/about" className="block px-3 py-2">
             About
           </NavLink>
