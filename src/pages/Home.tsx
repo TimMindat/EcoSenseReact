@@ -14,7 +14,6 @@ import {
 } from 'lucide-react';
 import { Button } from '../components/Button';
 import { AirQualityCard } from '../components/AirQualityCard';
-import { WaterQualityCard } from '../components/WaterQualityCard';
 import { QualityGuide } from '../components/QualityGuide';
 
 function UserTypeCard({ icon: Icon, title, description, features }: {
@@ -65,7 +64,7 @@ export function Home() {
       title: "Regular Users",
       description: "Everyday individuals looking to ensure their immediate environment is safe and healthy.",
       features: [
-        "Real-Time Air & Water Quality Insights",
+        "Real-Time Air Quality Insights",
         "Personalized Health Recommendations",
         "Community Action Ideas"
       ]
@@ -96,7 +95,7 @@ export function Home() {
     {
       icon: Activity,
       title: "Comprehensive Environmental Monitoring",
-      description: "Monitor both air and water quality using IoT sensors and advanced analytics with real-time insights."
+      description: "Monitor air quality using IoT sensors and advanced analytics with real-time insights."
     },
     {
       icon: Target,
@@ -146,7 +145,7 @@ export function Home() {
               Empowering You to Protect Your Environment
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Monitor air and water quality in real-time with IoT sensors and get personalized insights for a healthier environment.
+              Monitor air quality in real-time with IoT sensors and get personalized insights for a healthier environment.
             </p>
             <div className="mt-10 flex items-center gap-x-6">
               <Link
@@ -172,11 +171,10 @@ export function Home() {
         </div>
       </div>
 
-      {/* Demo Cards */}
+      {/* Air Quality Card */}
       <div className="mx-auto max-w-7xl px-6 py-12">
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="max-w-3xl mx-auto">
           <AirQualityCard />
-          <WaterQualityCard />
         </div>
         <div className="mt-12">
           <QualityGuide />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AQI_LEVELS, WQI_LEVELS } from '../lib/qualityScales';
+import { AQI_LEVELS } from '../lib/qualityScales';
 import { Info } from 'lucide-react';
 
 interface QualityLevelProps {
@@ -41,36 +41,23 @@ export function QualityGuide() {
       <div className="mb-8">
         <div className="flex items-center space-x-2 mb-4">
           <Info className="h-6 w-6 text-blue-600" />
-          <h2 className="text-2xl font-bold text-gray-900">Understanding Air & Water Quality Measurements</h2>
+          <h2 className="text-2xl font-bold text-gray-900">Understanding Air Quality Measurements</h2>
         </div>
         <p className="text-gray-600 mb-6">
-          Our monitoring system uses standardized indices to measure and report air and water quality. 
-          These measurements help you make informed decisions about outdoor activities and water usage.
+          Our monitoring system uses standardized indices to measure and report air quality. 
+          These measurements help you make informed decisions about outdoor activities.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8">
-        <div>
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Air Quality Index (AQI)</h2>
-          <p className="text-gray-600 mb-4">
-            The AQI runs from 0 to 500, with higher values indicating worse air quality. 
-            The scale is divided into six categories, each with specific health implications.
-          </p>
-          {AQI_LEVELS.map((level, index) => (
-            <QualityLevel key={index} {...level} />
-          ))}
-        </div>
-
-        <div>
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Water Quality Index (WQI)</h2>
-          <p className="text-gray-600 mb-4">
-            The WQI ranges from 0 to 100, with higher values indicating better water quality. 
-            The scale is divided into five categories to help understand water safety.
-          </p>
-          {WQI_LEVELS.map((level, index) => (
-            <QualityLevel key={index} {...level} />
-          ))}
-        </div>
+      <div>
+        <h2 className="text-xl font-bold text-gray-900 mb-4">Air Quality Index (AQI)</h2>
+        <p className="text-gray-600 mb-4">
+          The AQI runs from 0 to 500, with higher values indicating worse air quality. 
+          The scale is divided into six categories, each with specific health implications.
+        </p>
+        {AQI_LEVELS.map((level, index) => (
+          <QualityLevel key={index} {...level} />
+        ))}
       </div>
 
       <div className="mt-8 p-4 bg-blue-50 rounded-lg">
