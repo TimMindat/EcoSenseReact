@@ -12,118 +12,78 @@ import {
   LineChart,
   ArrowRight
 } from 'lucide-react';
-import { Button } from '../components/Button';
+import { UserTypeCard } from '../components/home/UserTypeCard';
+import { FeatureCard } from '../components/home/FeatureCard';
 import { AirQualityCard } from '../components/AirQualityCard';
 import { QualityGuide } from '../components/QualityGuide';
 
-function UserTypeCard({ icon: Icon, title, description, features }: {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  features: string[];
-}) {
-  return (
-    <div className="bg-white rounded-xl shadow-lg p-6 transform hover:scale-105 transition-transform duration-300">
-      <div className="flex items-center space-x-3 mb-4">
-        <Icon className="h-8 w-8 text-green-600" />
-        <h3 className="text-xl font-bold">{title}</h3>
-      </div>
-      <p className="text-gray-600 mb-4">{description}</p>
-      <ul className="space-y-2">
-        {features.map((feature, index) => (
-          <li key={index} className="flex items-start space-x-2">
-            <div className="mt-1">
-              <div className="h-2 w-2 rounded-full bg-green-500" />
-            </div>
-            <span className="text-gray-700">{feature}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+const userTypes = [
+  {
+    icon: User,
+    title: "Regular Users",
+    description: "Everyday individuals looking to ensure their immediate environment is safe and healthy.",
+    features: [
+      "Real-Time Air Quality Insights",
+      "Personalized Health Recommendations",
+      "Community Action Ideas"
+    ]
+  },
+  {
+    icon: Building2,
+    title: "Businesses",
+    description: "Companies and factories aiming to ensure employee safety, meet legal standards, and reduce environmental impact.",
+    features: [
+      "Workplace Safety Insights",
+      "Regulatory Compliance Guidance",
+      "Sustainability Tips"
+    ]
+  },
+  {
+    icon: LandPlot,
+    title: "Governments",
+    description: "Local and national authorities responsible for ensuring environmental safety and aligning with UN SDGs.",
+    features: [
+      "Nationwide Monitoring Insights",
+      "Policy Recommendations",
+      "UN SDG Compliance Strategies"
+    ]
+  }
+];
 
-function FeatureCard({ icon: Icon, title, description }: {
-  icon: React.ElementType;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="bg-white rounded-xl shadow-lg p-6 transform hover:scale-105 transition-transform duration-300">
-      <Icon className="h-8 w-8 text-green-600 mb-4" />
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-gray-600">{description}</p>
-    </div>
-  );
-}
+const features = [
+  {
+    icon: Activity,
+    title: "Comprehensive Environmental Monitoring",
+    description: "Monitor air quality using IoT sensors and advanced analytics with real-time insights."
+  },
+  {
+    icon: Target,
+    title: "Tailored to Every User",
+    description: "Customized recommendations for individuals, businesses, and governments based on their specific needs."
+  },
+  {
+    icon: Brain,
+    title: "Predictive Analytics",
+    description: "Machine learning models predict future trends, allowing proactive measures to mitigate risks."
+  },
+  {
+    icon: Smartphone,
+    title: "User-Friendly Design",
+    description: "Easy-to-use website and mobile app with interactive graphs and personalized dashboards."
+  },
+  {
+    icon: LineChart,
+    title: "Data-Driven Insights",
+    description: "Advanced analytics provide actionable insights for informed decision-making."
+  },
+  {
+    icon: Leaf,
+    title: "SDG Alignment",
+    description: "Active support in helping organizations achieve their sustainability goals and UN SDG targets."
+  }
+];
 
 export function Home() {
-  const userTypes = [
-    {
-      icon: User,
-      title: "Regular Users",
-      description: "Everyday individuals looking to ensure their immediate environment is safe and healthy.",
-      features: [
-        "Real-Time Air Quality Insights",
-        "Personalized Health Recommendations",
-        "Community Action Ideas"
-      ]
-    },
-    {
-      icon: Building2,
-      title: "Businesses",
-      description: "Companies and factories aiming to ensure employee safety, meet legal standards, and reduce environmental impact.",
-      features: [
-        "Workplace Safety Insights",
-        "Regulatory Compliance Guidance",
-        "Sustainability Tips"
-      ]
-    },
-    {
-      icon: LandPlot,
-      title: "Governments",
-      description: "Local and national authorities responsible for ensuring environmental safety and aligning with UN SDGs.",
-      features: [
-        "Nationwide Monitoring Insights",
-        "Policy Recommendations",
-        "UN SDG Compliance Strategies"
-      ]
-    }
-  ];
-
-  const features = [
-    {
-      icon: Activity,
-      title: "Comprehensive Environmental Monitoring",
-      description: "Monitor air quality using IoT sensors and advanced analytics with real-time insights."
-    },
-    {
-      icon: Target,
-      title: "Tailored to Every User",
-      description: "Customized recommendations for individuals, businesses, and governments based on their specific needs."
-    },
-    {
-      icon: Brain,
-      title: "Predictive Analytics",
-      description: "Machine learning models predict future trends, allowing proactive measures to mitigate risks."
-    },
-    {
-      icon: Smartphone,
-      title: "User-Friendly Design",
-      description: "Easy-to-use website and mobile app with interactive graphs and personalized dashboards."
-    },
-    {
-      icon: LineChart,
-      title: "Data-Driven Insights",
-      description: "Advanced analytics provide actionable insights for informed decision-making."
-    },
-    {
-      icon: Leaf,
-      title: "SDG Alignment",
-      description: "Active support in helping organizations achieve their sustainability goals and UN SDG targets."
-    }
-  ];
-
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -154,7 +114,10 @@ export function Home() {
               >
                 Get started
               </Link>
-              <Link href="#features" className="text-sm font-semibold leading-6 text-gray-900">
+              <Link 
+                href="/features" 
+                className="text-sm font-semibold leading-6 text-gray-900 hover:text-green-600 transition-colors duration-200 py-2"
+              >
                 Learn more <span aria-hidden="true">→</span>
               </Link>
             </div>
@@ -237,7 +200,7 @@ export function Home() {
               >
                 Get started
               </Link>
-              <Link href="#features" className="text-sm font-semibold leading-6 text-white">
+              <Link href="/features" className="text-sm font-semibold leading-6 text-white">
                 Learn more <span aria-hidden="true">→</span>
               </Link>
             </div>

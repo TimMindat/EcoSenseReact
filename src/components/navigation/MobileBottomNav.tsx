@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useLocation } from 'react-router-dom';
 import { MobileNavLink } from './MobileNavLink';
-import { Home, User, LogIn, UserPlus } from 'lucide-react';
+import { Home, User, LogIn, UserPlus, Wind } from 'lucide-react';
 
 export function MobileBottomNav() {
   const { user } = useAuth();
@@ -16,6 +16,13 @@ export function MobileBottomNav() {
           icon={Home}
           label="Home"
           isActive={location.pathname === '/'}
+        />
+        
+        <MobileNavLink 
+          to="/air-quality" 
+          icon={Wind}
+          label="Air Quality"
+          isActive={location.pathname === '/air-quality'}
         />
         
         {user ? (

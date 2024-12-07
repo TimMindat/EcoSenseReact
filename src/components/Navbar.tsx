@@ -4,10 +4,12 @@ import { Menu } from 'lucide-react';
 import { NavLink } from './navigation/NavLink';
 import { AuthButtons } from './navigation/AuthButtons';
 import { MobileMenu } from './navigation/MobileMenu';
+import { useBreakpoint } from './navigation/useBreakpoint';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const isMobile = useBreakpoint('(max-width: 768px)');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,10 +20,14 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navClasses = `fixed w-full z-50 transition-all duration-200 ${
+    isMobile || isScrolled 
+      ? 'bg-white shadow-sm' 
+      : 'bg-white/80 backdrop-blur-md'
+  }`;
+
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-200 ${
-      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-white/80 backdrop-blur-md'
-    }`}>
+    <nav className={navClasses}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
@@ -55,7 +61,8 @@ export function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(true)}
-              className="text-gray-600 hover:text-gray-900"
+              className="text-gray-600 hover:text-gray-900 p-2"
+              aria-label="Open menu"
             >
               <Menu className="h-6 w-6" />
             </button>
