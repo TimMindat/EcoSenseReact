@@ -11,6 +11,7 @@ import { ForgotPassword } from './pages/ForgotPassword';
 import { AirQuality } from './pages/AirQuality';
 import { Navbar } from './components/Navbar';
 import { MobileBottomNav } from './components/navigation/MobileBottomNav';
+import { InstallPrompt } from './components/InstallPrompt';
 import { AuthProvider } from './contexts/AuthContext';
 import { useAuth } from './contexts/AuthContext';
 
@@ -53,6 +54,7 @@ function App() {
             <AppRoutes />
           </main>
           <MobileBottomNav />
+          <InstallPrompt />
         </div>
       </Router>
     </AuthProvider>

@@ -1,0 +1,36 @@
+{
+  "name": "EcoSense - Environmental Monitoring",
+  "short_name": "EcoSense",
+  "description": "Real-time environmental monitoring for air and water quality",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#16a34a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Air Quality",
+      "url": "/air-quality",
+      "description": "Check current air quality"
+    },
+    {
+      "name": "Profile",
+      "url": "/profile",
+      "description": "View your profile"
+    }
+  ]
+}

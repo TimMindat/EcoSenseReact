@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoSense - Offline</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+    .container {
+      max-width: 600px;
+      text-align: center;
+      padding: 2rem;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    h1 { color: #16a34a; margin-bottom: 1rem; }
+    p { color: #4b5563; line-height: 1.5; }
+    .button {
+      display: inline-block;
+      background: #16a34a;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: background-color 0.2s;
+    }
+    .button:hover { background: #15803d; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>You're Offline</h1>
+    <p>Sorry, you're currently offline. Please check your internet connection and try again.</p>
+    <p>Some features of EcoSense are available offline, but you'll need an internet connection to access real-time data.</p>
+    <a href="/" class="button">Try Again</a>
+  </div>
+</body>
+</html>
