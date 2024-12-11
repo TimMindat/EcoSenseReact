@@ -1,6 +1,10 @@
-export interface NotificationOptions extends NotificationOptions {
-  requireInteraction?: boolean;
+export interface NotificationPayload {
+  title: string;
+  body: string;
   tag?: string;
+  requireInteraction?: boolean;
+  silent?: boolean;
+  options?: Partial<NotificationOptions>;
 }
 
 export interface NotificationPreferences {
