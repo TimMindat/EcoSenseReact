@@ -3,11 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="https://i.imgur.com/4vkOF6D.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>EcoSense: Smarter Monitoring for a Healthier Planet</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#16a34a" />
+    <meta name="description" content="Real-time environmental monitoring for air and water quality" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="EcoSense" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="EcoSense" />
+    <meta property="og:description" content="Real-time environmental monitoring for air and water quality" />
+    <meta property="og:image" content="https://i.imgur.com/4vkOF6D.png" />
+    <meta property="og:url" content="https://ecosense.app" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+              console.log('ServiceWorker registered:', registration);
+            })
+            .catch(error => {
+              console.error('ServiceWorker registration failed:', error);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
