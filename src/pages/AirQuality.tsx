@@ -1,6 +1,7 @@
 import React from 'react';
 import { Info } from 'lucide-react';
 import { AirQualityCard } from '../components/AirQualityCard';
+import { WeatherCard } from '../components/weather/WeatherCard';
 import { QualityGuide } from '../components/QualityGuide';
 
 export function AirQuality() {
@@ -11,16 +12,17 @@ export function AirQuality() {
         <div className="max-w-2xl mx-auto text-center mb-12">
           <Info className="mx-auto h-12 w-12 text-green-600" />
           <h1 className="mt-3 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Air Quality Monitoring
+            Environmental Monitoring
           </h1>
           <p className="mt-4 text-lg text-gray-600">
-            Real-time air quality data and insights to help you make informed decisions about your environment.
+            Real-time air quality and weather data to help you make informed decisions about your environment.
           </p>
         </div>
 
-        {/* Air Quality Card Section */}
-        <div className="max-w-3xl mx-auto mb-16">
+        {/* Monitoring Cards Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto mb-16">
           <AirQualityCard />
+          <WeatherCard />
         </div>
 
         {/* Quality Guide Section */}

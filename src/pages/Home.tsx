@@ -10,76 +10,64 @@ import {
   Smartphone,
   Leaf,
   LineChart,
-  ArrowRight
+  ArrowRight,
+  Bell,
+  Shield,
+  Globe
 } from 'lucide-react';
 import { UserTypeCard } from '../components/home/UserTypeCard';
 import { FeatureCard } from '../components/home/FeatureCard';
-import { AirQualityCard } from '../components/AirQualityCard';
-import { QualityGuide } from '../components/QualityGuide';
-
-const userTypes = [
-  {
-    icon: User,
-    title: "Regular Users",
-    description: "Everyday individuals looking to ensure their immediate environment is safe and healthy.",
-    features: [
-      "Real-Time Air Quality Insights",
-      "Personalized Health Recommendations",
-      "Community Action Ideas"
-    ]
-  },
-  {
-    icon: Building2,
-    title: "Businesses",
-    description: "Companies and factories aiming to ensure employee safety, meet legal standards, and reduce environmental impact.",
-    features: [
-      "Workplace Safety Insights",
-      "Regulatory Compliance Guidance",
-      "Sustainability Tips"
-    ]
-  },
-  {
-    icon: LandPlot,
-    title: "Governments",
-    description: "Local and national authorities responsible for ensuring environmental safety and aligning with UN SDGs.",
-    features: [
-      "Nationwide Monitoring Insights",
-      "Policy Recommendations",
-      "UN SDG Compliance Strategies"
-    ]
-  }
-];
+import { PromotionalBanner } from '../components/home/PromotionalBanner';
+import { HeroButton } from '../components/home/HeroButton';
 
 const features = [
   {
     icon: Activity,
-    title: "Comprehensive Environmental Monitoring",
-    description: "Monitor air quality using IoT sensors and advanced analytics with real-time insights."
+    title: 'Real-Time Monitoring',
+    description: 'Get instant access to air and water quality data through our advanced IoT sensor network.'
   },
   {
-    icon: Target,
-    title: "Tailored to Every User",
-    description: "Customized recommendations for individuals, businesses, and governments based on their specific needs."
+    icon: Bell,
+    title: 'Smart Alerts',
+    description: 'Receive immediate notifications when environmental conditions exceed safe thresholds.'
   },
   {
     icon: Brain,
-    title: "Predictive Analytics",
-    description: "Machine learning models predict future trends, allowing proactive measures to mitigate risks."
+    title: 'AI-Powered Insights',
+    description: 'Advanced analytics and machine learning to predict environmental trends and provide actionable recommendations.'
+  }
+];
+
+const userTypes = [
+  {
+    icon: User,
+    title: 'Regular Users',
+    description: 'Monitor your local environment and receive personalized health recommendations.',
+    features: [
+      'Real-time air quality monitoring',
+      'Personalized health alerts',
+      'Environmental impact tracking'
+    ]
   },
   {
-    icon: Smartphone,
-    title: "User-Friendly Design",
-    description: "Easy-to-use website and mobile app with interactive graphs and personalized dashboards."
+    icon: Building2,
+    title: 'Businesses',
+    description: 'Ensure workplace safety and compliance with environmental regulations.',
+    features: [
+      'Workplace safety monitoring',
+      'Compliance reporting',
+      'Employee health insights'
+    ]
   },
   {
-    icon: LineChart,
-    title: "Data-Driven Insights",
-    description: "Advanced analytics provide actionable insights for informed decision-making."
-  },
-  {
-    icon: Leaf,
-    title: "SDG Alignment",
-    description: "Active support in helping organizations achieve their sustainability goals and UN SDG targets."
+    icon: LandPlot,
+    title: 'Governments',
+    description: 'Make data-driven decisions for environmental policy and public health.',
+    features: [
+      'City-wide monitoring',
+      'Policy impact analysis',
+      'Public health management'
+    ]
   }
 ];
 
@@ -87,120 +75,123 @@ export function Home() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <div className="relative isolate overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
-          <div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
-            <div className="mt-24 sm:mt-32 lg:mt-16">
-              <a href="#features" className="inline-flex space-x-6">
-                <span className="rounded-full bg-green-600/10 px-3 py-1 text-sm font-semibold leading-6 text-green-600 ring-1 ring-inset ring-green-600/10">
-                  What's new
-                </span>
-                <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-600">
-                  <span>Just shipped v1.0</span>
+      <div className="relative isolate">
+        {/* Background gradient */}
+        <div
+          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          aria-hidden="true"
+        >
+          <div
+            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-green-200 to-green-600 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            style={{
+              clipPath:
+                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+            }}
+          />
+        </div>
+
+        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
+          <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
+            <div className="flex">
+              <div className="relative flex items-center gap-x-4 rounded-full px-4 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                <span className="font-semibold text-green-600">New</span>
+                <span className="h-4 w-px bg-gray-900/10" aria-hidden="true" />
+                <a href="#features" className="flex items-center gap-x-1">
+                  <span>Just launched</span>
                   <ArrowRight className="h-4 w-4" />
-                </span>
-              </a>
+                </a>
+              </div>
             </div>
-            <h1 className="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Empowering You to Protect Your Environment
+            <h1 className="mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+              Monitor Your Environment with Precision
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Monitor air quality in real-time with IoT sensors and get personalized insights for a healthier environment.
+              EcoSense provides real-time air and water quality monitoring, helping you make informed decisions about your environment and health.
             </p>
             <div className="mt-10 flex items-center gap-x-6">
-              <Link
-                href="/signup"
-                className="rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
-              >
-                Get started
-              </Link>
-              <Link 
-                href="/features" 
-                className="text-sm font-semibold leading-6 text-gray-900 hover:text-green-600 transition-colors duration-200 py-2"
-              >
+              <HeroButton />
+              <Link href="/about" className="text-sm font-semibold leading-6 text-gray-900">
                 Learn more <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>
-          <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none xl:ml-32">
-            <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-              <img
-                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                alt="App screenshot"
-                className="w-[76rem] rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10"
-              />
-            </div>
+          <div className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
+            <img
+              src="https://images.unsplash.com/photo-1599940824399-b87987ceb72a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+              alt="Environmental monitoring"
+              className="mx-auto w-[22.875rem] max-w-full rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[38.875rem]"
+            />
           </div>
         </div>
       </div>
 
-      {/* Air Quality Card */}
+      {/* Rest of the component remains unchanged */}
       <div className="mx-auto max-w-7xl px-6 py-12">
-        <div className="max-w-3xl mx-auto">
-          <AirQualityCard />
-        </div>
-        <div className="mt-12">
-          <QualityGuide />
-        </div>
+        <PromotionalBanner />
       </div>
 
-      {/* User Types Section */}
-      <div className="py-24 bg-gray-50">
+      <div className="py-24 sm:py-32 bg-gray-50">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-base font-semibold leading-7 text-green-600">Our Users</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Tailored Solutions for Every Need
-            </p>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Everything you need to monitor your environment
+            </h2>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Whether you're an individual, business, or government entity, EcoSense provides specialized environmental monitoring solutions.
+              Advanced features designed to give you the most accurate and actionable environmental insights.
             </p>
           </div>
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
-            {userTypes.map((type, index) => (
-              <UserTypeCard key={index} {...type} />
-            ))}
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+              {features.map((feature) => (
+                <FeatureCard key={feature.title} {...feature} />
+              ))}
+            </dl>
           </div>
         </div>
       </div>
 
-      {/* Features Section */}
-      <div id="features" className="py-24 sm:py-32">
+      <div className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-base font-semibold leading-7 text-green-600">Features</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              What Makes EcoSense Different?
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Solutions for Everyone
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-gray-600">
+              Whether you're an individual, business, or government entity, EcoSense has the right solution for you.
             </p>
           </div>
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-3">
-            {features.map((feature, index) => (
-              <FeatureCard key={index} {...feature} />
-            ))}
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+              {userTypes.map((userType) => (
+                <UserTypeCard key={userType.title} {...userType} />
+              ))}
+            </dl>
           </div>
         </div>
       </div>
 
-      {/* CTA Section */}
       <div className="bg-green-600">
         <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Ready to start monitoring?
+              Ready to get started?
               <br />
               Join EcoSense today.
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-green-100">
-              Get started with our platform and take control of your environmental impact.
+              Start monitoring your environment and contribute to a sustainable future.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
                 href="/signup"
-                className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-green-600 shadow-sm hover:bg-green-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-green-600 shadow-sm hover:bg-green-50"
               >
-                Get started
+                Get Started
               </Link>
-              <Link href="/features" className="text-sm font-semibold leading-6 text-white">
+              <Link
+                href="/about"
+                className="text-sm font-semibold leading-6 text-white"
+              >
                 Learn more <span aria-hidden="true">→</span>
               </Link>
             </div>

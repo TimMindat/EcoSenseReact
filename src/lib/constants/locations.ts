@@ -1,0 +1,31 @@
+export const EGYPT_GOVERNORATES = [
+  { name: 'Alexandria', coordinates: { lat: 31.2001, lon: 29.9187 } },
+  { name: 'Aswan', coordinates: { lat: 24.0889, lon: 32.8998 } },
+  { name: 'Asyut', coordinates: { lat: 27.1783, lon: 31.1859 } },
+  { name: 'Beheira', coordinates: { lat: 30.8481, lon: 30.3436 } },
+  { name: 'Beni Suef', coordinates: { lat: 29.0661, lon: 31.0994 } },
+  { name: 'Cairo', coordinates: { lat: 30.0444, lon: 31.2357 } },
+  { name: 'Dakahlia', coordinates: { lat: 31.0409, lon: 31.3809 } },
+  { name: 'Damietta', coordinates: { lat: 31.4175, lon: 31.8144 } },
+  { name: 'Faiyum', coordinates: { lat: 29.3085, lon: 30.8428 } },
+  { name: 'Gharbia', coordinates: { lat: 30.8754, lon: 31.0335 } },
+  { name: 'Giza', coordinates: { lat: 30.0131, lon: 31.2089 } },
+  { name: 'Ismailia', coordinates: { lat: 30.5965, lon: 32.2715 } },
+  { name: 'Kafr El Sheikh', coordinates: { lat: 31.1089, lon: 30.9382 } },
+  { name: 'Luxor', coordinates: { lat: 25.6872, lon: 32.6396 } },
+  { name: 'Matrouh', coordinates: { lat: 31.3543, lon: 27.2373 } },
+  { name: 'Minya', coordinates: { lat: 28.1099, lon: 30.7503 } },
+  { name: 'Monufia', coordinates: { lat: 30.5972, lon: 30.9876 } },
+  { name: 'New Valley', coordinates: { lat: 25.4482, lon: 30.5542 } },
+  { name: 'North Sinai', coordinates: { lat: 30.8471, lon: 33.3748 } },
+  { name: 'Port Said', coordinates: { lat: 31.2567, lon: 32.2841 } },
+  { name: 'Qalyubia', coordinates: { lat: 30.1286, lon: 31.2422 } },
+  { name: 'Qena', coordinates: { lat: 26.1552, lon: 32.7167 } },
+  { name: 'Red Sea', coordinates: { lat: 26.8206, lon: 33.9971 } },
+  { name: 'Sharqia', coordinates: { lat: 30.7327, lon: 31.7195 } },
+  { name: 'Sohag', coordinates: { lat: 26.5569, lon: 31.6948 } },
+  { name: 'South Sinai', coordinates: { lat: 28.2336, lon: 33.6177 } },
+  { name: 'Suez', coordinates: { lat: 29.9668, lon: 32.5498 } }
+] as const;
+
+export const DEFAULT_LOCATION = EGYPT_GOVERNORATES.find(gov => gov.name === 'Cairo')!;
