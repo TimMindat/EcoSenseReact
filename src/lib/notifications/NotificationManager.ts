@@ -6,7 +6,7 @@ export class NotificationManager {
   private static instance: NotificationManager;
   private notificationQueue: Array<{ message: string; options: NotificationOptions }> = [];
   private retryAttempts = 3;
-  private retryDelay = 5000; // 5 seconds
+  private retryDelay = 5000;
 
   private constructor() {
     this.processQueue();
@@ -35,15 +35,16 @@ export class NotificationManager {
   }
 
   async sendWelcomeNotification(airQuality: AirQualityData): Promise<void> {
-    const { label, color } = getAQIStatus(airQuality.list[0].main.aqi);
+    const { label } = getAQIStatus(airQuality.list[0].main.aqi);
     
     const message = `Welcome to EcoPulse! Current air quality is ${label}.`;
     const options = {
       body: formatAQIMessage(airQuality),
-      icon: '/icons/notification-icon.png',
-      badge: '/icons/badge-icon.png',
+      icon: 'https://i.imgur.com/4vkOF6D.png',
+      badge: 'https://i.imgur.com/4vkOF6D.png',
       tag: 'welcome',
-      requireInteraction: true
+      requireInteraction: true,
+      silent: false
     };
 
     await this.sendNotification(message, options);
@@ -58,9 +59,10 @@ export class NotificationManager {
       
     const options = {
       body: formatAQIMessage(airQuality),
-      icon: '/icons/notification-icon.png',
+      icon: 'https://i.imgur.com/4vkOF6D.png',
       tag: 'air-quality-update',
-      requireInteraction: significant
+      requireInteraction: significant,
+      silent: !significant
     };
 
     await this.sendNotification(message, options);
@@ -97,7 +99,7 @@ export class NotificationManager {
     }
   }
 
-  private async processQueue(): Promise<void> {
+  private processQueue(): void {
     setInterval(() => {
       if (Notification.permission === 'granted' && this.notificationQueue.length > 0) {
         const { message, options } = this.notificationQueue.shift()!;
@@ -115,6 +117,5 @@ export class NotificationManager {
     };
 
     console.log('Notification log:', log);
-    // Here you could also send logs to your analytics service
   }
 }

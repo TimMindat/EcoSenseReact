@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { NotificationService } from '../core/NotificationService';
+import { NotificationManager } from '../NotificationManager';
 import { useAirQuality } from '../../hooks/useAirQuality';
-import { createWelcomeNotification } from '../templates/airQualityTemplates';
 
 export function useNotificationService() {
   const [state, setState] = useState({
@@ -12,7 +11,7 @@ export function useNotificationService() {
   });
 
   const { data: airQuality } = useAirQuality();
-  const notificationService = NotificationService.getInstance();
+  const notificationManager = NotificationManager.getInstance();
 
   useEffect(() => {
     setState(prev => ({
@@ -27,11 +26,10 @@ export function useNotificationService() {
     try {
       setState(prev => ({ ...prev, loading: true, error: null }));
       
-      const granted = await notificationService.requestPermission();
+      const granted = await notificationManager.requestPermission();
       
       if (granted && airQuality) {
-        const { message, options } = createWelcomeNotification(airQuality);
-        await notificationService.send(message, options);
+        await notificationManager.sendWelcomeNotification(airQuality);
       }
 
       setState(prev => ({
