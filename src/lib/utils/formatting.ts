@@ -30,3 +30,18 @@ export function formatTimestamp(timestamp: number): string {
     return 'Invalid date';
   }
 }
+
+export function formatAQIMessage(airQuality: any): string {
+  const components = airQuality.list[0].components;
+  const mainPollutants = [
+    { name: 'PM2.5', value: components.pm2_5 },
+    { name: 'PM10', value: components.pm10 },
+    { name: 'NO₂', value: components.no2 }
+  ].filter(p => p.value !== undefined);
+
+  const pollutantText = mainPollutants
+    .map(p => `${p.name}: ${formatPollutantValue(p.value)} μg/m³`)
+    .join(' | ');
+
+  return `Current Levels - ${pollutantText}`;
+}
