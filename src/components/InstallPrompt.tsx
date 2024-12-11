@@ -8,7 +8,10 @@ export function InstallPrompt() {
   const { isInstallable, hasUserDeclined, setUserDeclined, promptInstall } = useInstallPrompt();
   const [showPrompt, setShowPrompt] = useState(true);
 
-  // Early return if prompt shouldn't be shown
+  // Don't show the prompt if:
+  // 1. App is not installable
+  // 2. User has declined
+  // 3. Prompt is hidden
   if (!isInstallable || hasUserDeclined || !showPrompt) {
     return null;
   }
@@ -37,12 +40,13 @@ export function InstallPrompt() {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 50 }}
-        className="fixed bottom-0 left-0 right-0 p-4 bg-white shadow-lg border-t border-gray-200 z-50"
+        className="fixed bottom-0 left-0 right-0 p-4 bg-white shadow-lg border-t border-gray-200 z-50 pb-safe"
       >
         <div className="max-w-xl mx-auto">
           <button
             onClick={handleDecline}
-            className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+            className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 p-2"
+            aria-label="Close installation prompt"
           >
             <X className="h-5 w-5" />
           </button>
