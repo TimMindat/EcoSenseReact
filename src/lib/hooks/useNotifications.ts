@@ -1,67 +1,104 @@
 import { useState, useEffect, useCallback } from 'react';
-import { NotificationManager } from '../notifications/NotificationManager';
-import { useAirQuality } from './useAirQuality';
+import { useAuth } from '../../contexts/AuthContext';
+import { fcmService } from '../firebase/messaging';
 
 interface NotificationState {
-  supported: boolean;
   permission: NotificationPermission;
+  token: string | null;
   loading: boolean;
   error: string | null;
 }
 
 export function useNotifications() {
+  const { user } = useAuth();
   const [state, setState] = useState<NotificationState>({
-    supported: false,
     permission: 'default',
+    token: null,
     loading: true,
     error: null
   });
 
-  const { data: airQuality } = useAirQuality();
-  const notificationManager = NotificationManager.getInstance();
-
   useEffect(() => {
-    const checkNotificationSupport = () => {
-      setState(prev => ({
-        ...prev,
-        supported: 'Notification' in window,
-        permission: Notification.permission,
-        loading: false
-      }));
+    const initNotifications = async () => {
+      try {
+        setState(prev => ({ ...prev, loading: true, error: null }));
+        
+        // Initialize FCM service
+        await fcmService.init();
+        
+        // Get current permission state
+        setState(prev => ({ ...prev, permission: Notification.permission }));
+        
+        // Get token if permission is granted and user is logged in
+        if (Notification.permission === 'granted' && user) {
+          const token = await fcmService.getOrGenerateToken(user.uid);
+          setState(prev => ({ ...prev, token }));
+        }
+      } catch (error) {
+        setState(prev => ({
+          ...prev,
+          error: error instanceof Error ? error.message : 'Failed to initialize notifications'
+        }));
+      } finally {
+        setState(prev => ({ ...prev, loading: false }));
+      }
     };
 
-    checkNotificationSupport();
-  }, []);
+    initNotifications();
+  }, [user]);
 
   const requestPermission = useCallback(async () => {
+    if (!user) return false;
+
     try {
       setState(prev => ({ ...prev, loading: true, error: null }));
       
-      const granted = await notificationManager.requestPermission();
-      
-      if (granted && airQuality) {
-        await notificationManager.sendWelcomeNotification(airQuality);
+      const granted = await fcmService.requestPermission();
+      if (granted) {
+        const token = await fcmService.getOrGenerateToken(user.uid);
+        setState(prev => ({
+          ...prev,
+          permission: 'granted',
+          token
+        }));
       }
-
-      setState(prev => ({
-        ...prev,
-        permission: Notification.permission,
-        loading: false
-      }));
-
+      
       return granted;
     } catch (error) {
       setState(prev => ({
         ...prev,
-        error: 'Failed to enable notifications',
-        loading: false
+        error: error instanceof Error ? error.message : 'Failed to request permission'
       }));
       return false;
+    } finally {
+      setState(prev => ({ ...prev, loading: false }));
     }
-  }, [airQuality]);
+  }, [user]);
+
+  const unsubscribe = useCallback(async () => {
+    if (!user) return;
+
+    try {
+      setState(prev => ({ ...prev, loading: true, error: null }));
+      await fcmService.deleteToken(user.uid);
+      setState(prev => ({
+        ...prev,
+        token: null
+      }));
+    } catch (error) {
+      setState(prev => ({
+        ...prev,
+        error: error instanceof Error ? error.message : 'Failed to unsubscribe'
+      }));
+    } finally {
+      setState(prev => ({ ...prev, loading: false }));
+    }
+  }, [user]);
 
   return {
     ...state,
-    requestPermission
+    requestPermission,
+    unsubscribe,
+    isEnabled: state.permission === 'granted' && !!state.token
   };
 }

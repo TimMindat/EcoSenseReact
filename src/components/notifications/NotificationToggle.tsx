@@ -1,16 +1,24 @@
 import React from 'react';
-import { Bell, BellOff } from 'lucide-react';
+import { Bell, BellOff, Loader2 } from 'lucide-react';
 import { Button } from '../Button';
-import { useNotifications } from '../../lib/notifications/hooks/useNotifications';
+import { useNotifications } from '../../lib/hooks/useNotifications';
 
 export function NotificationToggle() {
-  const { supported, permission, loading, requestPermission } = useNotifications();
+  const { 
+    isEnabled,
+    loading,
+    error,
+    requestPermission,
+    unsubscribe
+  } = useNotifications();
 
-  if (!supported) {
-    return null;
-  }
-
-  const isEnabled = permission === 'granted';
+  const handleToggle = async () => {
+    if (isEnabled) {
+      await unsubscribe();
+    } else {
+      await requestPermission();
+    }
+  };
 
   return (
     <div className="flex items-center justify-between bg-white rounded-lg p-4 shadow-sm border border-gray-100">
@@ -26,19 +34,28 @@ export function NotificationToggle() {
           </h3>
           <p className="text-sm text-gray-500">
             {isEnabled 
-              ? 'You will receive real-time air quality updates'
-              : 'Get instant alerts about air quality changes'}
+              ? 'You will receive real-time updates about air quality changes'
+              : 'Get instant alerts about important environmental changes'}
           </p>
+          {error && (
+            <p className="text-sm text-red-600 mt-1">{error}</p>
+          )}
         </div>
       </div>
       
       <Button
-        onClick={requestPermission}
-        disabled={loading || isEnabled}
+        onClick={handleToggle}
+        disabled={loading}
         variant={isEnabled ? 'secondary' : 'primary'}
         className="ml-4"
       >
-        {isEnabled ? 'Enabled' : 'Enable'}
+        {loading ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : isEnabled ? (
+          'Disable'
+        ) : (
+          'Enable'
+        )}
       </Button>
     </div>
   );
