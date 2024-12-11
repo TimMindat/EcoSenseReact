@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Bell, Sun, Clock, CloudRain, Thermometer, Wind, Droplets } from 'lucide-react';
 import { DailyInsights } from './DailyInsights';
 import { HourlyInsights } from './HourlyInsights';
-import { NotificationPrompt } from './NotificationPrompt';
+import { NotificationToggle } from './NotificationToggle';
 import { useWeather } from '../../lib/hooks/useWeather';
 import { useAirQuality } from '../../lib/hooks/useAirQuality';
 import { useNotifications } from '../../lib/hooks/useNotifications';
@@ -12,7 +12,7 @@ export function UserInsights() {
   const [view, setView] = useState<'daily' | 'hourly'>('daily');
   const { data: weather, isLoading: weatherLoading } = useWeather();
   const { data: airQuality, isLoading: aqLoading } = useAirQuality();
-  const { showPrompt, handleDismiss, requestPermission } = useNotifications();
+  const { showPrompt } = useNotifications();
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 space-y-6">
@@ -45,15 +45,8 @@ export function UserInsights() {
         </div>
       </div>
 
-      {/* Notification Prompt */}
-      <AnimatePresence>
-        {showPrompt && (
-          <NotificationPrompt 
-            onDismiss={handleDismiss}
-            onEnable={requestPermission}
-          />
-        )}
-      </AnimatePresence>
+      {/* Notification Toggle */}
+      <NotificationToggle />
 
       {/* Current Conditions Summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
