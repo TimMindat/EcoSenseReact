@@ -3,6 +3,7 @@ import { Info } from 'lucide-react';
 import { AirQualityCard } from '../components/AirQualityCard';
 import { WeatherCard } from '../components/weather/WeatherCard';
 import { QualityGuide } from '../components/QualityGuide';
+import { UserInsights } from '../components/insights/UserInsights';
 
 export function AirQuality() {
   return (
@@ -17,6 +18,11 @@ export function AirQuality() {
           <p className="mt-4 text-lg text-gray-600">
             Real-time air quality and weather data to help you make informed decisions about your environment.
           </p>
+        </div>
+
+        {/* User Insights Section */}
+        <div className="mb-8">
+          <UserInsights />
         </div>
 
         {/* Monitoring Cards Section */}
