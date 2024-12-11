@@ -2,17 +2,26 @@ export interface NotificationPayload {
   title: string;
   body: string;
   tag?: string;
+  data?: {
+    url?: string;
+    [key: string]: any;
+  };
   requireInteraction?: boolean;
-  silent?: boolean;
-  options?: Partial<NotificationOptions>;
 }
 
 export interface NotificationPreferences {
   enabled: boolean;
-  dailyUpdates: boolean;
-  hourlyAlerts: boolean;
+  topics: string[];
   schedule: {
-    hour: number;
-    minute: number;
+    daily: boolean;
+    hourly: boolean;
+    emergencyOnly: boolean;
   };
+}
+
+export interface TokenData {
+  token: string;
+  createdAt: string;
+  platform: string;
+  userAgent: string;
 }
