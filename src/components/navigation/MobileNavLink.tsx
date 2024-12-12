@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { LucideIcon } from 'lucide-react';
 
 interface MobileNavLinkProps {
@@ -10,9 +10,18 @@ interface MobileNavLinkProps {
 }
 
 export function MobileNavLink({ to, icon: Icon, label, isActive }: MobileNavLinkProps) {
+  const handleClick = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <Link
       to={to}
+      onClick={handleClick}
       className={`flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors duration-200 ${
         isActive 
           ? 'text-green-600' 

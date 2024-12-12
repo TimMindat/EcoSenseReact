@@ -14,6 +14,7 @@ import { MobileBottomNav } from './components/navigation/MobileBottomNav';
 import { InstallPrompt } from './components/InstallPrompt';
 import { AuthProvider } from './contexts/AuthContext';
 import { useAuth } from './contexts/AuthContext';
+import { useScrollTop } from './lib/hooks/useScrollTop';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();
@@ -21,6 +22,9 @@ function PrivateRoute({ children }: { children: React.ReactNode }) {
 }
 
 function AppRoutes() {
+  // Use the scroll hook
+  useScrollTop();
+
   return (
     <Routes>
       <Route path="/about" element={<About />} />
