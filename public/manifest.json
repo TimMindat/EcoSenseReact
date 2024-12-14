@@ -4,6 +4,7 @@
   "description": "Real-time environmental monitoring for air and water quality",
   "start_url": "/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay"],
   "background_color": "#ffffff",
   "theme_color": "#16a34a",
   "orientation": "portrait",
@@ -17,7 +18,7 @@
     {
       "src": "https://i.imgur.com/AZuj8zN.png",
       "sizes": "512x512",
-      "type": "image/png", 
+      "type": "image/png",
       "purpose": "maskable"
     },
     {
@@ -44,5 +45,6 @@
       "url": "/profile",
       "description": "View your profile"
     }
-  ]
+  ],
+  "lang": "en"
 }
