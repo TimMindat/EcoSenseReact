@@ -1,10 +1,5 @@
-[
-  {
-    "relation": ["delegate_permission/common.handle_all_urls"],
-    "target": {
-      "namespace": "android_app",
-      "package_name": "xyz.appmaker.uavrnq",
-      "sha256_cert_fingerprints": ["A2:33:7A:C7:F4:34:C1:F5:7A:41:9B:29:54:B8:87:7F:FC:C2:C6:70:49:0B:7C:01:EA:8B:0B:42:83:AF:93:B4"]
-    }
-  }
-]
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "app.ecosense.twa",
+               "sha256_cert_fingerprints": ["A3:1F:DB:51:14:0B:03:40:C9:E1:B1:BB:7A:EE:7B:0E:6B:59:52:49:44:0E:F8:80:69:11:99:57:E5:7F:8E:28"] }
+}]
