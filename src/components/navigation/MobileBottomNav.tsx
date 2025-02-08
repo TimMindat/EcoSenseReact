@@ -1,15 +1,15 @@
 import React from 'react';
-import { useAuth } from '../../contexts/AuthContext';
 import { useLocation } from 'react-router-dom';
+import { Home, Wind, User, LogIn, UserPlus } from 'lucide-react';
+import { useAuth } from '../../contexts/AuthContext';
 import { MobileNavLink } from './MobileNavLink';
-import { Home, User, LogIn, UserPlus, Wind } from 'lucide-react';
 
 export function MobileBottomNav() {
   const { user } = useAuth();
   const location = useLocation();
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 pb-safe">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 pb-safe z-50">
       <div className="flex items-center justify-around h-16">
         <MobileNavLink 
           to="/" 

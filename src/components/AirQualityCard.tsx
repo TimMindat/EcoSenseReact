@@ -6,7 +6,8 @@ import { PollutantDisplay } from './air-quality/PollutantDisplay';
 import { formatTimestamp } from '../lib/utils/formatting';
 import { POLLUTANT_LIMITS } from '../lib/constants/pollutants';
 
-export function AirQualityCard() {
+// Export as default for lazy loading
+const AirQualityCard: React.FC = () => {
   const { data, location, isLoading, error, refresh } = useAirQuality();
 
   if (error) {
@@ -60,7 +61,6 @@ export function AirQualityCard() {
           </div>
         </div>
         
-        {/* Data Source Link */}
         <a
           href="https://openweathermap.org/api/air-pollution"
           target="_blank"
@@ -112,4 +112,6 @@ export function AirQualityCard() {
       </div>
     </div>
   );
-}
+};
+
+export default AirQualityCard;
