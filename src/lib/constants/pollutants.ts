@@ -1,67 +1,38 @@
-// WHO Air Quality Guidelines (2021) and common standards
 export const POLLUTANT_LIMITS = {
-  co: { 
-    max: 4000,    // WHO guideline: 4mg/m³ = 4000 μg/m³ (8-hour mean)
-    label: 'Carbon Monoxide (CO)',
+  'pm2_5': {
+    name: 'PM2.5',
     unit: 'μg/m³',
-    dangerLevels: {
-      safe: 0.5,    // 50% of limit
-      moderate: 0.75 // 75% of limit
-    }
+    max: 500,
+    who_guideline: 5
   },
-  no2: { 
-    max: 200,     // WHO guideline: 200 μg/m³ (1-hour mean)
-    label: 'Nitrogen Dioxide (NO₂)',
+  'pm10': {
+    name: 'PM10',
     unit: 'μg/m³',
-    dangerLevels: {
-      safe: 0.5,
-      moderate: 0.75
-    }
+    max: 600,
+    who_guideline: 15
   },
-  pm10: { 
-    max: 45,      // WHO guideline: 45 μg/m³ (24-hour mean)
-    label: 'PM10',
+  'o3': {
+    name: 'Ozone',
     unit: 'μg/m³',
-    dangerLevels: {
-      safe: 0.5,
-      moderate: 0.75
-    }
+    max: 0.6,
+    who_guideline: 0.1
   },
-  pm2_5: { 
-    max: 15,      // WHO guideline: 15 μg/m³ (24-hour mean)
-    label: 'PM2.5',
+  'no2': {
+    name: 'Nitrogen Dioxide',
     unit: 'μg/m³',
-    dangerLevels: {
-      safe: 0.5,
-      moderate: 0.75
-    }
+    max: 2000,
+    who_guideline: 25
   },
-  o3: { 
-    max: 100,     // WHO guideline: 100 μg/m³ (8-hour mean)
-    label: 'Ozone (O₃)',
+  'so2': {
+    name: 'Sulfur Dioxide',
     unit: 'μg/m³',
-    dangerLevels: {
-      safe: 0.5,
-      moderate: 0.75
-    }
+    max: 1000,
+    who_guideline: 40
   },
-  so2: { 
-    max: 40,      // WHO guideline: 40 μg/m³ (24-hour mean)
-    label: 'Sulfur Dioxide (SO₂)',
-    unit: 'μg/m³',
-    dangerLevels: {
-      safe: 0.5,
-      moderate: 0.75
-    }
+  'co': {
+    name: 'Carbon Monoxide',
+    unit: 'mg/m³',
+    max: 50,
+    who_guideline: 4
   }
-} as const;
-
-// AQI breakpoints based on WHO and US EPA standards
-export const AQI_BREAKPOINTS = [
-  { min: 0, max: 50, label: 'Good', color: 'green' },
-  { min: 51, max: 100, label: 'Moderate', color: 'yellow' },
-  { min: 101, max: 150, label: 'Unhealthy for Sensitive Groups', color: 'orange' },
-  { min: 151, max: 200, label: 'Unhealthy', color: 'red' },
-  { min: 201, max: 300, label: 'Very Unhealthy', color: 'purple' },
-  { min: 301, max: 500, label: 'Hazardous', color: 'maroon' }
-] as const;
+};
