@@ -27,6 +27,13 @@ const UserInsights = React.lazy(() =>
   }))
 );
 
+// Add the new PollutantInfoCard component
+const PollutantInfoCard = React.lazy(() => 
+  import('../components/PollutantInfoCard').catch(() => ({
+    default: () => <div>Failed to load Pollutant Information</div>
+  }))
+);
+
 // Fallback component for loading states
 const LoadingFallback = () => (
   <div className="flex items-center justify-center min-h-[200px] bg-white rounded-lg shadow-lg p-6">
@@ -72,6 +79,15 @@ export function AirQuality() {
             </Suspense>
           </ErrorBoundary>
         </div>
+
+        {/* Add Pollutant Info Card Section */}
+        <ErrorBoundary>
+          <Suspense fallback={<LoadingFallback />}>
+            <div className="mb-16">
+              <PollutantInfoCard />
+            </div>
+          </Suspense>
+        </ErrorBoundary>
 
         {/* Quality Guide Section */}
         <ErrorBoundary>
