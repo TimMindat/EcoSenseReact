@@ -4,6 +4,9 @@ import { EGYPT_GOVERNORATES } from '../lib/config/locations';
 import { AQICalculator } from '../lib/aqi/calculator';
 import { motion } from 'framer-motion';
 import { format } from 'date-fns';
+import { Wind, Droplet, RefreshCw, MapPin } from 'lucide-react';
+import { Location } from '../lib/types/location';
+import LocationSelector from './LocationSelector';
 
 export default function AirQualityCard() {
   const [airQualityData, setAirQualityData] = useState(null);
@@ -11,6 +14,7 @@ export default function AirQualityCard() {
   const [error, setError] = useState(null);
   const [selectedGovernorate, setSelectedGovernorate] = useState(EGYPT_GOVERNORATES[0]);
   const [lastUpdated, setLastUpdated] = useState(null);
+  const [isLocationSelectorOpen, setIsLocationSelectorOpen] = useState(false);
 
   const fetchData = async (governorate) => {
     try {
@@ -58,7 +62,9 @@ export default function AirQualityCard() {
   }, [selectedGovernorate]);
 
   const handleRefresh = () => {
-    fetchData(selectedGovernorate);
+    setIsRefreshing(true);
+    fetchData(selectedGovernorate || DEFAULT_LOCATION);
+    setTimeout(() => setIsRefreshing(false), 1000);
   };
 
   const handleGovernorateChange = (e) => {
